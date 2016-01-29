@@ -2,21 +2,21 @@
 
 namespace Kisphp;
 
-use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Input\InputInterface;
 
 class CommandChecker
 {
     /**
-     * @var ArgvInput
+     * @var InputInterface
      */
     protected $input;
 
     /**
-     * @param ArgvInput $input
+     * @param InputInterface $input
      *
      * @return $this
      */
-    public function setInput($input)
+    public function setInput(InputInterface $input)
     {
         $this->input = $input;
 
@@ -26,7 +26,7 @@ class CommandChecker
     /**
      * @throws ComposerNoUpdaterException
      *
-     * @return void
+     * @return null
      */
     public function validate()
     {
@@ -58,9 +58,9 @@ class CommandChecker
     {
         $arguments = $this->input->getArguments();
 
-        if ( ! $this->input->getOption('dry-run'
+        if ( ! $this->input->getOption('dry-run')
+            && $arguments['command'] === 'update'
             && count($arguments['packages']) === 0
-            && $arguments['command'] === 'update')
         ) {
             return true;
         }
