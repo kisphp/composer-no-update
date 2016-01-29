@@ -10,7 +10,7 @@ class CommandChecker
     /**
      * @param CommandEvent $command
      *
-     * @throws NoUpdaterException
+     * @throws ComposerNoUpdaterException
      *
      * @return void
      */
@@ -28,7 +28,7 @@ class CommandChecker
             && count($arguments['packages']) === 0
             && ! $input->getOption('dry-run')
         ) {
-            throw new NoUpdaterException();
+            throw new ComposerNoUpdaterException();
         }
     }
 }

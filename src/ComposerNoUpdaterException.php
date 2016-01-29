@@ -2,7 +2,7 @@
 
 namespace Kisphp;
 
-class NoUpdaterException extends \Exception
+class ComposerNoUpdaterException extends \Exception
 {
     protected $message = 'Do not run "composer update" without arguments';
 }
