@@ -56,7 +56,10 @@ class ComposerNoUpdater implements PluginInterface, EventSubscriberInterface
      */
     public function checkUpdateCommand(CommandEvent $commandEvent)
     {
-        $this->commandChecker->validate($commandEvent);
+        $this->commandChecker
+            ->setInput($commandEvent->getInput())
+            ->validate($commandEvent)
+        ;
     }
 
 }
