@@ -9,7 +9,7 @@ use Composer\Plugin\CommandEvent;
 use Composer\Plugin\PluginEvents;
 use Composer\Plugin\PluginInterface;
 
-class NoUpdater implements PluginInterface, EventSubscriberInterface
+class ComposerNoUpdater implements PluginInterface, EventSubscriberInterface
 {
     /**
      * @var Composer
@@ -52,11 +52,14 @@ class NoUpdater implements PluginInterface, EventSubscriberInterface
     /**
      * @param CommandEvent $commandEvent
      *
-     * @throws NoUpdaterException
+     * @throws ComposerNoUpdaterException
      */
     public function checkUpdateCommand(CommandEvent $commandEvent)
     {
-        $this->commandChecker->validate($commandEvent);
+        $this->commandChecker
+            ->setInput($commandEvent->getInput())
+            ->validate()
+        ;
     }
 
 }
