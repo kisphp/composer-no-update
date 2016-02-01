@@ -3,7 +3,7 @@ This repository will prevent to run `composer update` without parameters. You sh
 If you know what you are doing and still want to run the update without any parameters, then you have two ways to do it:
 
 ```bash
-COMPOSER_ENV=dev composer update
+COMPOSER_UPDATE_FORCE=1 composer update
 ```
 
 or 

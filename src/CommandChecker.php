@@ -6,6 +6,8 @@ use Symfony\Component\Console\Input\InputInterface;
 
 class CommandChecker
 {
+    const COMPOSER_UPDATE_FORCE = 'COMPOSER_UPDATE_FORCE';
+
     /**
      * @var InputInterface
      */
@@ -44,7 +46,7 @@ class CommandChecker
      */
     protected function isDevEnvironment()
     {
-        if (isset($_SERVER['COMPOSER_ENV']) && $_SERVER['COMPOSER_ENV'] === 'dev') {
+        if (isset($_SERVER[self::COMPOSER_UPDATE_FORCE]) && $_SERVER[self::COMPOSER_UPDATE_FORCE] === 1) {
             return true;
         }
 
