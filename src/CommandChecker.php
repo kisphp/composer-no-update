@@ -47,7 +47,9 @@ class CommandChecker
      */
     protected function isDevEnvironment()
     {
-        if (isset($_SERVER[self::COMPOSER_UPDATE_FORCE]) && $_SERVER[self::COMPOSER_UPDATE_FORCE] === self::COMPOSER_UPDATE_FORDE_VALUE) {
+        if (isset($_SERVER[self::COMPOSER_UPDATE_FORCE])
+            && intval($_SERVER[self::COMPOSER_UPDATE_FORCE]) === self::COMPOSER_UPDATE_FORDE_VALUE
+        ) {
             return true;
         }
 
