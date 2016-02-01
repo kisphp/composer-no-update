@@ -10,5 +10,7 @@ or
 
 ```bash
 composer update --no-plugins
+
+# this option will disable all composer plugin
 ```
 
