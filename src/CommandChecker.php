@@ -34,12 +34,14 @@ class CommandChecker
     public function validate()
     {
         if ($this->isDevEnvironment() === true) {
-            return;
+            return true;
         }
 
         if ($this->isUpdateWithoutArguments() === true) {
             throw new ComposerNoUpdaterException();
         }
+
+        return true;
     }
 
     /**
