@@ -34,12 +34,14 @@ class CommandChecker
     public function validate()
     {
         if ($this->isDevEnvironment() === true) {
-            return;
+            return true;
         }
 
         if ($this->isUpdateWithoutArguments() === true) {
             throw new ComposerNoUpdaterException();
         }
+
+        return true;
     }
 
     /**
@@ -63,7 +65,7 @@ class CommandChecker
     {
         $arguments = $this->input->getArguments();
 
-        if ( ! $this->input->getOption('dry-run')
+        if (!$this->input->getOption('dry-run')
             && $arguments['command'] === 'update'
             && count($arguments['packages']) === 0
         ) {

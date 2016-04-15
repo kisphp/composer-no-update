@@ -61,5 +61,4 @@ class ComposerNoUpdater implements PluginInterface, EventSubscriberInterface
             ->validate()
         ;
     }
-
 }
