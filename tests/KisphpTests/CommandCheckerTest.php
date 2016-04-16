@@ -54,4 +54,25 @@ class CommandCheckerTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($this->commandChecker->validate());
     }
+
+    public function test_devEnvironment()
+    {
+        $input = $this->getMock('Symfony\Component\Console\Input\InputInterface');
+        $_SERVER[\Kisphp\CommandChecker::COMPOSER_UPDATE_FORCE] = \Kisphp\CommandChecker::COMPOSER_UPDATE_FORDE_VALUE;
+
+        $input
+            ->expects($this->any())
+            ->method('getArguments')
+            ->will(
+                $this->returnValue([
+                    'command' => 'update',
+                    'packages' => [],
+                ])
+            )
+        ;
+
+        $this->commandChecker->setInput($input);
+
+        $this->assertTrue($this->commandChecker->validate());
+    }
 }
