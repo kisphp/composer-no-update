@@ -8,7 +8,8 @@
 [![License](https://poser.pugx.org/kisphp/composer-no-update/license)](https://packagist.org/packages/kisphp/composer-no-update)
 [![Monthly Downloads](https://poser.pugx.org/kisphp/composer-no-update/d/monthly)](https://packagist.org/packages/kisphp/composer-no-update)
 
-This repository will prevent to run `composer update` without parameters. You should always run `composer update {repository}` to update only specific repositories that you use in your application.
+This repository will prevent to run `composer update` without parameters.
+You should always run `composer update {repository}` to update only specific repositories that you use in your application.
 
 If you know what you are doing and still want to run the update without any parameters, then you have two ways to do it:
 
