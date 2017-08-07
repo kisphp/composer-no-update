@@ -18,7 +18,7 @@ class CommandCheckerTest extends PHPUnit_Framework_TestCase
      */
     public function test_exception()
     {
-        $input = $this->getMock('Symfony\Component\Console\Input\InputInterface');
+        $input = $this->createMock('Symfony\Component\Console\Input\InputInterface');
 
         $input
             ->expects($this->any())
@@ -37,7 +37,7 @@ class CommandCheckerTest extends PHPUnit_Framework_TestCase
 
     public function test_install()
     {
-        $input = $this->getMock('Symfony\Component\Console\Input\InputInterface');
+        $input = $this->createMock('Symfony\Component\Console\Input\InputInterface');
 
         $input
             ->expects($this->any())
@@ -57,7 +57,7 @@ class CommandCheckerTest extends PHPUnit_Framework_TestCase
 
     public function test_devEnvironment()
     {
-        $input = $this->getMock('Symfony\Component\Console\Input\InputInterface');
+        $input = $this->createMock('Symfony\Component\Console\Input\InputInterface');
         $_SERVER[\Kisphp\CommandChecker::COMPOSER_UPDATE_FORCE] = \Kisphp\CommandChecker::COMPOSER_UPDATE_FORDE_VALUE;
 
         $input
