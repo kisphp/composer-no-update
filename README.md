@@ -1,7 +1,6 @@
 # Composer no update
 
 [![Build Status](https://travis-ci.org/kisphp/composer-no-update.svg?branch=master)](https://travis-ci.org/kisphp/composer-no-update)
-[![codecov.io](https://codecov.io/github/kisphp/composer-no-update/coverage.svg?branch=master)](https://codecov.io/github/kisphp/composer-no-update?branch=master)
 
 [![Latest Stable Version](https://poser.pugx.org/kisphp/composer-no-update/v/stable)](https://packagist.org/packages/kisphp/composer-no-update)
 [![Total Downloads](https://poser.pugx.org/kisphp/composer-no-update/downloads)](https://packagist.org/packages/kisphp/composer-no-update)
