@@ -1,29 +1,33 @@
 <?php
 
+namespace Tests;
 
-class CommandCheckerTest extends PHPUnit_Framework_TestCase
+use Kisphp\ComposerNoUpdaterException;
+use PHPUnit\Framework\TestCase;
+
+/**
+ * @coversNothing
+ */
+class CommandCheckerTest extends TestCase
 {
     /**
      * @var \Kisphp\CommandChecker
      */
     protected $commandChecker;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->commandChecker = new \Kisphp\CommandChecker();
     }
 
-    /**
-     * @expectedException Kisphp\ComposerNoUpdaterException
-     */
-    public function test_exception()
+    public function testException()
     {
-        $input = $this->getMock('Symfony\Component\Console\Input\InputInterface');
+        $input = $this->createMock('Symfony\Component\Console\Input\InputInterface');
 
         $input
             ->expects($this->any())
             ->method('getArguments')
-            ->will(
+            ->willReturn(
                 $this->returnValue([
                     'command' => 'update',
                     'packages' => [],
@@ -31,18 +35,20 @@ class CommandCheckerTest extends PHPUnit_Framework_TestCase
             )
         ;
 
+        $this->expectException(ComposerNoUpdaterException::class);
+
         $this->commandChecker->setInput($input);
         $this->commandChecker->validate();
     }
 
-    public function test_install()
+    public function testInstall()
     {
-        $input = $this->getMock('Symfony\Component\Console\Input\InputInterface');
+        $input = $this->createMock('Symfony\Component\Console\Input\InputInterface');
 
         $input
             ->expects($this->any())
             ->method('getArguments')
-            ->will(
+            ->willReturn(
                 $this->returnValue([
                     'command' => 'install',
                     'packages' => [],
@@ -55,19 +61,19 @@ class CommandCheckerTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->commandChecker->validate());
     }
 
-    public function test_devEnvironment()
+    public function testDevEnvironment()
     {
-        $input = $this->getMock('Symfony\Component\Console\Input\InputInterface');
+        $input = $this->createMock('Symfony\Component\Console\Input\InputInterface');
         $_SERVER[\Kisphp\CommandChecker::COMPOSER_UPDATE_FORCE] = \Kisphp\CommandChecker::COMPOSER_UPDATE_FORDE_VALUE;
 
         $input
             ->expects($this->any())
             ->method('getArguments')
-            ->will(
-                $this->returnValue([
+            ->willReturn(
+                [
                     'command' => 'update',
                     'packages' => [],
-                ])
+                ]
             )
         ;
 

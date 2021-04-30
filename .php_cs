@@ -1,64 +1,69 @@
 <?php
 
-$finder = Symfony\CS\Finder\DefaultFinder::create()
-    ->in(__DIR__ . '/src')
+$header = <<<'EOF'
+This file is part of KISPHP - Composer no update.
+(c) Bogdan Rizac <<kisphp@users.noreply.github.com>
+This source file is subject to the MIT license that is bundled
+with this source code in the file LICENSE.
+EOF;
+
+$finder = PhpCsFixer\Finder::create()
+    ->exclude('tests/Fixtures')
+    ->in(__DIR__)
+    ->append([
+        __DIR__.'/dev-tools/doc.php',
+        __DIR__.'/php-cs-fixer',
+    ])
 ;
 
-return Symfony\CS\Config\Config::create()
-    ->finder($finder)
-    ->setUsingCache(false)
-    ->level(\Symfony\CS\FixerInterface::PSR2_LEVEL)
-    ->fixers(
-        [
-            'blankline_after_open_tag',
-            //'braces',
-            'concat_with_spaces',
-            '-concat_without_spaces',
-            'double_arrow_multiline_whitespaces',
-            'duplicate_semicolon',
-            'empty_enclosing_lines',
-            'encoding',
-            'extra_empty_lines',
-            'include',
-            'function_declaration',
-            'list_commas',
-            'multiline_array_trailing_comma',
-            'namespace_no_leading_whitespace',
-            'new_with_braces',
-            'object_operator',
-            'operator_spaces',
-            '-phpdoc_params',
-            'phpdoc_no_access',
-            'phpdoc_no_package',
-            'phpdoc_order',
-            'phpdoc_scalar',
-            'phpdoc_separation',
-            'phpdoc_to_comment',
-            'phpdoc_trim',
-            'phpdoc_type_to_var',
-            'phpdoc_var_without_name',
-            'psr0',
-            'remove_leading_slash_use',
-            '-ordered_use',
-            'remove_lines_between_uses',
-            'return',
-            'self_accessor',
-            'single_array_no_trailing_comma',
-            'single_line_before_namespace',
-            'single_quote',
-            'short_array_syntax',
-            'short_tag',
-            'spaces_before_semicolon',
-            'spaces_cast',
-            'standardize_not_equal',
-            'ternary_spaces',
-            'trim_array_spaces',
-            'unalign_double_arrow',
-            'unalign_equals',
-            'unary_operators_spaces',
-            'unused_use',
-            'whitespacy_lines',
-        ]
-    )
+$config = new PhpCsFixer\Config();
+$config
+    ->setRiskyAllowed(true)
+    ->setUsingcache(false)
+    ->setRules([
+        '@PHP56Migration' => false,
+        '@PHPUnit75Migration:risky' => false,
+        '@PhpCsFixer' => true,
+        '@PhpCsFixer:risky' => false,
+        'general_phpdoc_annotation_remove' => ['annotations' => ['expectedDeprecation']],
+        'header_comment' => ['header' => $header],
+        'list_syntax' => ['syntax' => 'long'],
+        'concat_space' => [
+            'spacing' => 'one',
+        ],
+        'php_unit_internal_class' => false,
+        'phpdoc_no_empty_return' => true,
+        'phpdoc_add_missing_param_annotation' => true,
+        'no_whitespace_in_blank_line' => true,
+        'no_superfluous_phpdoc_tags' => false,
+        'general_phpdoc_annotation_remove' => true,
+        'php_unit_mock' => true,
+        'phpdoc_trim' => false,
+        'phpdoc_summary' => false,
+        'phpdoc_align' => false,
+        'phpdoc_types_order' => [
+            'null_adjustment' => 'always_last',
+        ],
+        'header_comment' => false,
+        'yoda_style' => false,
+    ])
+    ->setFinder($finder)
 ;
 
+// special handling of fabbot.io service if it's using too old PHP CS Fixer version
+if (false !== getenv('FABBOT_IO')) {
+    try {
+        PhpCsFixer\FixerFactory::create()
+            ->registerBuiltInFixers()
+            ->registerCustomFixers($config->getCustomFixers())
+            ->useRuleSet(new PhpCsFixer\RuleSet($config->getRules()));
+    } catch (PhpCsFixer\ConfigurationException\InvalidConfigurationException $e) {
+        $config->setRules([]);
+    } catch (UnexpectedValueException $e) {
+        $config->setRules([]);
+    } catch (InvalidArgumentException $e) {
+        $config->setRules([]);
+    }
+}
+
+return $config;

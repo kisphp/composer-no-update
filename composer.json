@@ -4,31 +4,37 @@
     "description": "Kisphp composer no update plugin",
     "type": "composer-plugin",
     "license": "MIT",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "authors": [
         {
-            "name": "Bogdan Rizac",
-            "email": "mariusbogdan83@gmail.com",
+            "name": "KISPHP",
+            "email": "kisphp@users.noreply.github.com",
             "homepage": "http://www.kisphp.com",
             "role": "developer"
         }
     ],
-    "minimum-stability": "stable",
-    "prefer-stable": true,
-    "require": {
-        "php": ">=5.5.9",
-        "composer-plugin-api": "^1.0"
-    },
-    "require-dev": {
-        "fabpot/php-cs-fixer": "1.9.*",
-        "composer/composer": "1.0.*",
-        "symfony/var-dumper": "3.0.*"
-    },
     "autoload": {
         "psr-4": {
             "Kisphp\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "extra": {
         "class": "Kisphp\\ComposerNoUpdater"
+    },
+    "require": {
+        "php": ">=7.4",
+        "composer-plugin-api": "~2.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.18",
+        "composer/composer": "^2.0",
+        "symfony/var-dumper": "^5.2",
+        "phpunit/phpunit": "^9.5"
     }
 }
