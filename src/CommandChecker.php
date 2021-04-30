@@ -29,7 +29,6 @@ class CommandChecker
     /**
      * @throws ComposerNoUpdaterException
      *
-     * @return null
      */
     public function validate()
     {

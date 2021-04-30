@@ -5,6 +5,9 @@ namespace Tests;
 use Kisphp\ComposerNoUpdaterException;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 class CommandCheckerTest extends TestCase
 {
     /**
@@ -17,7 +20,7 @@ class CommandCheckerTest extends TestCase
         $this->commandChecker = new \Kisphp\CommandChecker();
     }
 
-    public function test_exception()
+    public function testException()
     {
         $input = $this->createMock('Symfony\Component\Console\Input\InputInterface');
 
@@ -38,7 +41,7 @@ class CommandCheckerTest extends TestCase
         $this->commandChecker->validate();
     }
 
-    public function test_install()
+    public function testInstall()
     {
         $input = $this->createMock('Symfony\Component\Console\Input\InputInterface');
 
@@ -58,7 +61,7 @@ class CommandCheckerTest extends TestCase
         $this->assertTrue($this->commandChecker->validate());
     }
 
-    public function test_devEnvironment()
+    public function testDevEnvironment()
     {
         $input = $this->createMock('Symfony\Component\Console\Input\InputInterface');
         $_SERVER[\Kisphp\CommandChecker::COMPOSER_UPDATE_FORCE] = \Kisphp\CommandChecker::COMPOSER_UPDATE_FORDE_VALUE;
