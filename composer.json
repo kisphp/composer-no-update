@@ -15,13 +15,13 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=5.5.9",
-        "composer-plugin-api": "^1.0"
+        "php": ">=7.4",
+        "composer-plugin-api": "~2.0"
     },
     "require-dev": {
-        "fabpot/php-cs-fixer": "1.9.*",
-        "composer/composer": "1.0.*",
-        "symfony/var-dumper": "3.0.*"
+        "friendsofphp/php-cs-fixer": "^2.18",
+        "composer/composer": "^2.0",
+        "symfony/var-dumper": "^5.2"
     },
     "autoload": {
         "psr-4": {
