@@ -32,9 +32,9 @@
         "composer-plugin-api": "~2.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.18",
-        "composer/composer": "^2.0",
-        "symfony/var-dumper": "^5.2",
-        "phpunit/phpunit": "^9.5"
+        "friendsofphp/php-cs-fixer": "~2.18",
+        "composer/composer": "~2.1",
+        "symfony/var-dumper": "~5.2",
+        "phpunit/phpunit": "~9.5"
     }
 }
